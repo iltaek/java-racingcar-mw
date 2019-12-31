@@ -18,7 +18,7 @@ public class Main {
         System.out.println(MESSAGE_2);
         int round = scanner.nextInt();
 
-        Verifier.isRoundInteger(round);
+        Verifier.isInteger(round);
 
         List<String> carNames = Arrays.asList(inputCarNames.split(","));
 

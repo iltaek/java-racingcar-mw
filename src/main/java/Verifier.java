@@ -4,7 +4,7 @@ public class Verifier {
 
     }
 
-    public static void isRoundInteger(int round){
+    public static void isInteger(int input){
 
     }
 }
