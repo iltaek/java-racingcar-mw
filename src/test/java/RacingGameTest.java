@@ -10,16 +10,16 @@ public class RacingGameTest {
     RacingGame racingGame;
 
     @BeforeAll
-    void makeRacingGame(){
+    void makeRacingGame() {
         String input = "a,b,c,d,e";
         List<String> carNames = Arrays.asList(input.split(","));
-        racingGame = new RacingGame(carNames,5);
+        racingGame = new RacingGame(carNames, 5);
     }
 
 
     @Test
     @Description("레이싱 스타트 테스트")
-    void startTest(){
+    void startTest() {
 
     }
 }

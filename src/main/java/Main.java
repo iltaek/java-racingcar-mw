@@ -22,9 +22,9 @@ public class Main {
 
         List<String> carNames = Arrays.asList(inputCarNames.split(","));
 
-        RacingGame racingGame = new RacingGame(carNames,round);
+        RacingGame racingGame = new RacingGame(carNames, round);
         List<Car> cars = racingGame.start();
 
-        ConsolePrinter.print(cars);
+        ConsolePrinter.print(cars, round);
     }
 }

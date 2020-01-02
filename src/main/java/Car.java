@@ -1,24 +1,51 @@
 import java.util.LinkedList;
-import java.util.Queue;
+import java.util.List;
 import java.util.Random;
 
-public class Car {
-    final String name;
-    final Queue<Boolean> score;
+public class Car implements Comparable<Car> {
+    private final String name;
+    private final List<Boolean> score = new LinkedList<>();
+    public int totalScore = 0;
+    private boolean isWinner = false;
 
-    Car(String name){
+    Car(String name) {
         this.name = name;
-        this.score = new LinkedList<>();
     }
 
-    public void go(){
+
+    public void go() {
         Random random = new Random();
-        if(random.nextInt(10) >= 4){
+        if (random.nextInt(10) >= 4) {
             score.add(Boolean.TRUE);
-        }
-        else{
+            totalScore++;
+        } else {
             score.add(Boolean.FALSE);
         }
     }
 
+    public void setWinner() {
+        this.isWinner = true;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public List<Boolean> getScore() {
+        return score;
+    }
+
+    public boolean isWinner() {
+        return isWinner;
+    }
+
+    @Override
+    public int compareTo(Car car) {
+        return this.totalScore - car.totalScore;
+    }
+
+    @Override
+    public String toString() {
+        return this.name;
+    }
 }
