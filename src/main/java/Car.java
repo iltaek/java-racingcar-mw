@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Car {
+public class Car implements Comparable<Car>{
 
     private final String name;
     private final Integer criterion; //기준 점수 이상일 경우 전진, 미만이면 정지
@@ -42,5 +42,10 @@ public class Car {
 
     public String getName() {
         return name;
+    }
+
+    @Override
+    public int compareTo(Car car) {
+        return getLastScore() - car.getLastScore();
     }
 }

@@ -1,5 +1,8 @@
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class RacingGame {
 
@@ -18,5 +21,21 @@ public class RacingGame {
 
     public int getRound() {
         return round;
+    }
+
+    public void start() {
+        IntStream.range(0, round)
+            .forEach(i -> startOneRound());
+    }
+
+    public void startOneRound() {
+        players.forEach(c -> c.goOneStep(random.nextInt(10)));
+    }
+
+    public List<Car> getWinner() {
+        Car winner = Collections.max(players);
+        return players.stream()
+            .filter(c -> c.compareTo(winner)==0)
+            .collect(Collectors.toList());
     }
 }
