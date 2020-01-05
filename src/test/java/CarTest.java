@@ -1,33 +1,70 @@
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
+import java.util.Random;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class CarTest {
 
+    final Random random = new Random();
+
     @Test
-    @DisplayName("car가 go를 수행할 round수를 받고, 수행 결과를 List로 반환하는 테스트")
-    public void goEveryRoundTest(){
+    @DisplayName("한 번의 round를 진행하는 테스트")
+    public void goOneStepTest() {
         //given
-        Car car = new Car("CarA");
-
+        Car car = new Car("CarA", 4);
         //when
-        List<Boolean> record = car.goEveryRound(3);
-
+        car.goOneStep(random.nextInt(10));
         //then
-        assertThat(record.size()).isEqualTo(3);
-
+        assertThat(car.getValues().size()).isEqualTo(1);
     }
 
     @Test
-    @DisplayName("car가 랜덤 값을 받아서 4이상이면 true, 그렇지않으면 false를 반환하는 테스트")
-    public void goEachRoundTest(){
+    @DisplayName("두 번 이상의 round를 진행하는 테스트")
+    public void goManyStepsTest() {
         //given
-        Car car = new Car("CarA");
+        Car car = new Car("CarA", 4);
         //when
-        int randomNumber = car.goEachRound();
+        for (int i = 0; i < 5; i++) {
+            car.goOneStep(random.nextInt(10));
+        }
         //then
-        assertThat(randomNumber >= 4).isEqualTo(car.record.get(0));
+        assertThat(car.getValues().size()).isEqualTo(5);
     }
+
+    @Test
+    public void 최종_점수를_계산하는_테스트() {
+        //given
+        Car car = new Car("CarA", 4);
+
+        //when
+        for (int i = 0; i < 5; i++) {
+            car.goOneStep(random.nextInt(10));
+        }
+        List<Integer> values = car.getValues();
+        int score = (int) values.stream().filter(s -> s >= 4).count();
+
+        //then
+        assertThat(car.getLastScore()).isEqualTo(score);
+    }
+
+    @Test
+    public void 라운드별_누적점수_계산_테스트() {
+        //given
+        Car car = new Car("CarA", 4);
+        //when
+        for (int i = 0; i < 5; i++) {
+            car.goOneStep(random.nextInt(10));
+        }
+        List<Integer> values = car.getValues();
+        //then
+        int accumulatedScore = 0;
+        for (int i = 0; i < 5; i++) {
+            accumulatedScore += values.get(i) >= 4 ? 1 : 0;
+            assertThat(car.getScores().get(i)).isEqualTo(accumulatedScore);
+        }
+
+    }
+
 }
