@@ -48,4 +48,9 @@ public class Car implements Comparable<Car>{
     public int compareTo(Car car) {
         return getLastScore() - car.getLastScore();
     }
+
+    @Override
+    public String toString() {
+        return this.name;
+    }
 }
