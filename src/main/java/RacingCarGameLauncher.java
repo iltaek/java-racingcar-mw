@@ -17,7 +17,7 @@ public class RacingCarGameLauncher {
         System.out.println(result);
     }
 
-    public List<Car> getWinnersList(List<Car> carList) {
+    private List<Car> getWinnersList(List<Car> carList) {
         RacingCarGameWinners racingCarGameWinners = new RacingCarGameWinners();
         return racingCarGameWinners.getWinners(carList);
     }

@@ -33,7 +33,7 @@ public class RacingCarGameResult {
                 .append("이(가) 최종 우승 했습니다.");
     }
 
-    public String getWinnersName(List<Car> winnersList) {
+    private String getWinnersName(List<Car> winnersList) {
         StringBuilder winnerNames = new StringBuilder();
 
         Iterator<Car> iterator = winnersList.iterator();

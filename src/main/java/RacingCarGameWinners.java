@@ -13,7 +13,7 @@ public class RacingCarGameWinners {
         return winnersList;
     }
 
-    public void checkIfWinner(Car car) {
+    private void checkIfWinner(Car car) {
         if (car.getMovingDistance() > winnersMovingDistance) {
             winnersMovingDistance = car.getMovingDistance();
             setWinner(car);

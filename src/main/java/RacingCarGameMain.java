@@ -20,7 +20,7 @@ public class RacingCarGameMain {
         new RacingCarGameLauncher().launch(carList, number);
     }
 
-    public static boolean isValidCarNames(String carNames) {
+    private static boolean isValidCarNames(String carNames) {
         try {
             new RacingCarGameInputChecker().checkCarNames(carNames);
             return true;
@@ -30,7 +30,7 @@ public class RacingCarGameMain {
         }
     }
 
-    public static boolean isValidNumberOfExecution(String numberOfExecution) {
+    private static boolean isValidNumberOfExecution(String numberOfExecution) {
         try {
             new RacingCarGameInputChecker().checkNumberOfExecution(numberOfExecution);
             return true;
