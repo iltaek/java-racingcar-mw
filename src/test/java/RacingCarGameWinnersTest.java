@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class RacingCarGameWinnersTest {
     @Test
-    @Description("레이싱카 목록을 받아 가장 많이 이동한 최종 우승자만을 담은 리스트를 옳게 반환하는지 테스트")
+    @Description("레이싱카 목록을 받아 가장 많이 이동한 최종 우승자만을 담은 리스트를 옳게 반환하는지 테스트.")
     void getWinnersTest() {
         List<Car> carList = getCarList();
 

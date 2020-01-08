@@ -7,25 +7,6 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class RacingCarGameResultTest {
-    @Description("3대의 레이싱카를 담은 List<Car>를 반환한다. 이 때 n번 차는 n-1 만큼 이동한 상태라고 설정한다.")
-    private List<Car> getCarList() {
-        Car car1 = new Car("Car_1");
-
-        Car car2 = new Car("Car_2");
-        car2.move();
-
-        Car car3 = new Car("Car_3");
-        car3.move();
-        car3.move();
-
-        List<Car> carList = new ArrayList<>();
-        carList.add(car1);
-        carList.add(car2);
-        carList.add(car3);
-
-        return carList;
-    }
-
     /**
      *  < 의도한 출력 결과 >
      *
@@ -52,30 +33,51 @@ public class RacingCarGameResultTest {
         List<Car> carList = getCarList();
 
         RacingCarGameResult racingCarGameResult = new RacingCarGameResult();
-        racingCarGameResult.computeIntermediateResult(carList);
+        racingCarGameResult.prepareIntermediateResult(carList);
         String actualResult = racingCarGameResult.getResult();
 
         assertEquals(expectedResult, actualResult);
+    }
+
+    @Description("3대의 레이싱카를 담은 List<Car>를 반환한다. 이 때 n번 차는 n-1 만큼 이동한 상태라고 설정한다.")
+    private List<Car> getCarList() {
+        Car car1 = new Car("Car_1");
+
+        Car car2 = new Car("Car_2");
+        car2.move();
+
+        Car car3 = new Car("Car_3");
+        car3.move();
+        car3.move();
+
+        List<Car> carList = new ArrayList<>();
+        carList.add(car1);
+        carList.add(car2);
+        carList.add(car3);
+
+        return carList;
     }
 
     /**
      *  < 의도한 출력 결과 >
      *
      *  실행 결과 :
-     *  Car_3이(가) 최종 우승 했습니다.
+     *  Car_4, Car_5이(가) 최종 우승 했습니다.
      */
     @Test
-    @Description("레이싱카 목록을 받아 최종 진행 결과를 옳게 알려주는지 테스트")
+    @Description("레이싱카 최종 우승자 목록을 받아 최종 진행 결과를 옳게 알려주는지 테스트.")
     void finalResultTest() {
         String expectedResult = "실행 결과 : " +
                 "\n" +
-                "Car_3" +
+                "Car_4, Car_5" +
                 "이(가) 최종 우승 했습니다.";
 
-        List<Car> carList = getCarList();
+        List<Car> winnersList = new ArrayList<>();
+        winnersList.add(new Car("Car_4"));
+        winnersList.add(new Car("Car_5"));
 
         RacingCarGameResult racingCarGameResult = new RacingCarGameResult();
-        racingCarGameResult.computeFinalResult(carList);
+        racingCarGameResult.prepareFinalResult(winnersList);
         String actualResult = racingCarGameResult.getResult();
 
         assertEquals(expectedResult, actualResult);
@@ -96,7 +98,7 @@ public class RacingCarGameResultTest {
      *  Car_3이(가) 최종 우승 했습니다.
      */
     @Test
-    @Description("레이싱카 게임을 두 번 진행한 상황을 가정하여 전체 결과가 옳게 표현되는지 테스트")
+    @Description("레이싱카 게임을 두 번 진행한 상황을 가정하여 전체 결과가 옳게 표현되는지 테스트.")
     void playGameTwiceResultTest() {
         String expectedResult = "실행 결과 : " +
                 "\n" +
@@ -120,14 +122,19 @@ public class RacingCarGameResultTest {
         List<Car> carList = getCarList();
 
         RacingCarGameResult racingCarGameResult = new RacingCarGameResult();
-        racingCarGameResult.computeIntermediateResult(carList);
+        racingCarGameResult.prepareIntermediateResult(carList);
 
         for (Car car : carList) {
             car.move();
         }
 
-        racingCarGameResult.computeIntermediateResult(carList);
-        racingCarGameResult.computeFinalResult(carList);
+        racingCarGameResult.prepareIntermediateResult(carList);
+
+        List<Car> winnersList = new ArrayList<>();
+        winnersList.add(new Car("Car_3"));
+
+        racingCarGameResult.prepareFinalResult(winnersList);
+
         String actualResult = racingCarGameResult.getResult();
 
         assertEquals(expectedResult, actualResult);

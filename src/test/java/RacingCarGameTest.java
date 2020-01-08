@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class RacingCarGameTest {
 
     @Test
-    @Description("0 에서 9 사이의 랜덤 숫자를 생성하는지 테스트")
+    @Description("0 에서 9 사이의 랜덤 숫자를 생성하는지 테스트.")
     void generateRandomNumberTest() {
         RacingCarGame racingCarGame = new RacingCarGame();
         int randomNumber = racingCarGame.generateRandomNumber();
@@ -22,7 +22,7 @@ public class RacingCarGameTest {
     }
 
     @ParameterizedTest
-    @Description("차 한 대에 대해서 랜덤 값이 4 미만일 때 차가 움직이지 않는지 테스트")
+    @Description("차 한 대에 대해서 랜덤 값이 4 미만일 때 차가 움직이지 않는지 테스트.")
     @ValueSource(ints = {0, 1, 2, 3})
     void singleCarNotMoveTest(int number) {
         RacingCarGame racingCarGame = new RacingCarGame();
@@ -33,7 +33,7 @@ public class RacingCarGameTest {
     }
 
     @ParameterizedTest
-    @Description("차 한 대에 대해서 랜덤 값이 4 이상일 때 차가 움직이는지 테스트")
+    @Description("차 한 대에 대해서 랜덤 값이 4 이상일 때 차가 움직이는지 테스트.")
     @ValueSource(ints = {4, 5, 6, 7, 8, 9})
     void singleCarMoveTest(int number) {
         RacingCarGame racingCarGame = new RacingCarGame();
@@ -44,7 +44,7 @@ public class RacingCarGameTest {
     }
 
     @Test
-    @Description("차 여러 대에 대해서 게임을 한 판 하는 테스트")
+    @Description("차 여러 대에 대해서 게임을 한 판 하는 테스트.")
     void multiCarRacingGameTest() {
         RacingCarGame racingCarGame = new RacingCarGame();
 
