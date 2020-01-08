@@ -1,4 +1,3 @@
-import java.util.Iterator;
 import java.util.List;
 
 public class RacingCarGameResult {
@@ -27,26 +26,15 @@ public class RacingCarGameResult {
     }
 
     public void computeFinalResult(List<Car> carList) {
-        Iterator<Car> iterator = carList.iterator();
+        RacingCarGameWinners racingCarGameWinners = new RacingCarGameWinners();
+        int maxDistance = 0;
 
-        Car firstCar = iterator.next();
-        StringBuilder finalResult = new StringBuilder(firstCar.toString());
-        int maxDistance = firstCar.getMovingDistance();
-
-        while (iterator.hasNext()) {
-            Car nextCar = iterator.next();
-
-            if (nextCar.getMovingDistance() > maxDistance) {
-                finalResult = new StringBuilder(nextCar.toString());
-                maxDistance = nextCar.getMovingDistance();
-            } else if (nextCar.getMovingDistance() == maxDistance) {
-                finalResult.append(", ")
-                        .append(nextCar);
-            }
+        for (Car car : carList) {
+            maxDistance = racingCarGameWinners.updateMaxDistance(car, maxDistance);
         }
 
-        finalResult.append("이(가) 최종 우승 했습니다.");
-        result.append(finalResult.toString());
+        result.append(racingCarGameWinners.getWinnersName())
+                .append("이(가) 최종 우승 했습니다.");
     }
 
     public String getResult() {
