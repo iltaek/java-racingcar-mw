@@ -1,3 +1,4 @@
+import java.util.Iterator;
 import java.util.List;
 
 public class RacingCarGameResult {
@@ -8,14 +9,14 @@ public class RacingCarGameResult {
                 .append("\n");
     }
 
-    public void computeIntermediateResult(List<Car> carList) {
+    public void prepareIntermediateResult(List<Car> carList) {
         for (Car car : carList) {
-            computeCarMovementDrawing(car);
+            prepareCarMovementDrawing(car);
         }
         result.append("\n");
     }
 
-    private void computeCarMovementDrawing(Car car) {
+    private void prepareCarMovementDrawing(Car car) {
         result.append(car)
                 .append(" : ");
 
@@ -25,16 +26,26 @@ public class RacingCarGameResult {
         result.append("\n");
     }
 
-    public void computeFinalResult(List<Car> carList) {
-        RacingCarGameWinners racingCarGameWinners = new RacingCarGameWinners();
-        int maxDistance = 0;
+    public void prepareFinalResult(List<Car> winnersList) {
+        String winnersName = getWinnersName(winnersList);
 
-        for (Car car : carList) {
-            maxDistance = racingCarGameWinners.updateMaxDistance(car, maxDistance);
+        result.append(winnersName)
+                .append("이(가) 최종 우승 했습니다.");
+    }
+
+    public String getWinnersName(List<Car> winnersList) {
+        StringBuilder winnerNames = new StringBuilder();
+
+        Iterator<Car> iterator = winnersList.iterator();
+
+        winnerNames.append(iterator.next());
+
+        while (iterator.hasNext()) {
+            winnerNames.append(", ")
+                    .append(iterator.next());
         }
 
-        result.append(racingCarGameWinners.getWinnersName())
-                .append("이(가) 최종 우승 했습니다.");
+        return winnerNames.toString();
     }
 
     public String getResult() {

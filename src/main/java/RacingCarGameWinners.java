@@ -1,21 +1,28 @@
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class RacingCarGameWinners {
     private final List<Car> winnersList = new ArrayList<>();
+    private int winnersMovingDistance;
 
-    public int updateMaxDistance(Car car, int maxDistance) {
-        if (car.getMovingDistance() > maxDistance) {
-            setWinner(car);
-            return car.getMovingDistance();
+    public List<Car> getWinners(List<Car> carList) {
+        for (Car car : carList) {
+            checkIfWinner(car);
         }
 
-        if (car.getMovingDistance() == maxDistance) {
+        return winnersList;
+    }
+
+    public void checkIfWinner(Car car) {
+        if (car.getMovingDistance() > winnersMovingDistance) {
+            winnersMovingDistance = car.getMovingDistance();
+            setWinner(car);
+            return;
+        }
+
+        if (car.getMovingDistance() == winnersMovingDistance) {
             addWinner(car);
         }
-
-        return maxDistance;
     }
 
     private void setWinner(Car car) {
@@ -25,20 +32,5 @@ public class RacingCarGameWinners {
 
     private void addWinner(Car car) {
         winnersList.add(car);
-    }
-
-    public String getWinnersName() {
-        StringBuilder winnerNames = new StringBuilder();
-
-        Iterator<Car> iterator = winnersList.iterator();
-
-        winnerNames.append(iterator.next());
-
-        while (iterator.hasNext()) {
-            winnerNames.append(", ")
-                    .append(iterator.next());
-        }
-
-        return winnerNames.toString();
     }
 }
