@@ -6,9 +6,9 @@ public class Main {
 
     public static void main(String[] args) {
 
-        InputPrinter.carNameInputPrint();
+        InputPrinter.carNamesInputPrint();
         String input = scanner.nextLine();
-        Verifier.checkInput(input);
+        Verifier.checkCarNames(input);
 
         InputPrinter.roundNumberInputPrint();
         int round = scanner.nextInt();
