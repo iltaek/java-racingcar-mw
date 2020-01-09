@@ -13,7 +13,7 @@ public class RacingGameTest {
         //when
         RacingGame racingGame = new RacingGame(Arrays.asList("CarA", "CarB", "CarC"), 5);
         //then
-        assertThat(racingGame.getPlayers().size()).isEqualTo(3);
+        assertThat(racingGame.getCars().size()).isEqualTo(3);
         assertThat(racingGame.getRound()).isEqualTo(5);
     }
 
@@ -23,11 +23,11 @@ public class RacingGameTest {
         RacingGame racingGame = new RacingGame(Arrays.asList("CarA", "CarB", "CarC"), 5);
         //when
         racingGame.startOneRound();
-        List<Car> players = racingGame.getPlayers();
+        List<Car> cars = racingGame.getCars();
         //then
-        assertThat(players.get(0).getValues().size()).isEqualTo(1);
-        assertThat(players.get(1).getValues().size()).isEqualTo(1);
-        assertThat(players.get(2).getValues().size()).isEqualTo(1);
+        assertThat(cars.get(0).getValues().size()).isEqualTo(1);
+        assertThat(cars.get(1).getValues().size()).isEqualTo(1);
+        assertThat(cars.get(2).getValues().size()).isEqualTo(1);
     }
 
     @Test
@@ -36,11 +36,11 @@ public class RacingGameTest {
         RacingGame racingGame = new RacingGame(Arrays.asList("CarA", "CarB", "CarC"), 5);
         //when
         racingGame.start();
-        List<Car> players = racingGame.getPlayers();
+        List<Car> cars = racingGame.getCars();
         //then
-        assertThat(players.get(0).getValues().size()).isEqualTo(5);
-        assertThat(players.get(1).getValues().size()).isEqualTo(5);
-        assertThat(players.get(2).getValues().size()).isEqualTo(5);
+        assertThat(cars.get(0).getValues().size()).isEqualTo(5);
+        assertThat(cars.get(1).getValues().size()).isEqualTo(5);
+        assertThat(cars.get(2).getValues().size()).isEqualTo(5);
     }
 
     @Test
@@ -50,11 +50,11 @@ public class RacingGameTest {
 
         //when
         racingGame.start();
-        List<Car> players = racingGame.getPlayers();
+        List<Car> cars = racingGame.getCars();
 
-        int carAScore = players.get(0).getLastScore();
-        int carBScore = players.get(1).getLastScore();
-        int carCScore = players.get(2).getLastScore();
+        int carAScore = cars.get(0).getLastScore();
+        int carBScore = cars.get(1).getLastScore();
+        int carCScore = cars.get(2).getLastScore();
         List<Integer> scoreList = Arrays.asList(carAScore, carBScore, carCScore);
 
         int max = Collections.max(scoreList);

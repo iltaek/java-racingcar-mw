@@ -12,7 +12,7 @@ public class ResultPrinter {
     }
 
     private static void printAllPlayerEachRound(RacingGame racingGame, int round) {
-        racingGame.getPlayers().forEach(c -> printEachRoundScore(c, round));
+        racingGame.getCars().forEach(c -> printEachRoundScore(c, round));
         System.out.println();
     }
 

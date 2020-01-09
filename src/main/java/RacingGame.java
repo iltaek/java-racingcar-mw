@@ -7,16 +7,16 @@ import java.util.stream.IntStream;
 public class RacingGame {
 
     private final Random random = new Random(); //주사위
-    private final List<Car> players;
+    private final List<Car> cars;
     private final int round;
 
     public RacingGame(List<String> playerNames, int round) {
-        players = CarMaker.make(playerNames);
+        cars = CarMaker.make(playerNames);
         this.round = round;
     }
 
-    public List<Car> getPlayers() {
-        return players;
+    public List<Car> getCars() {
+        return cars;
     }
 
     public int getRound() {
@@ -29,12 +29,12 @@ public class RacingGame {
     }
 
     public void startOneRound() {
-        players.forEach(c -> c.goOneStep(random.nextInt(10)));
+        cars.forEach(c -> c.goOneStep(random.nextInt(10)));
     }
 
     public List<Car> getWinner() {
-        Car winner = Collections.max(players);
-        return players.stream()
+        Car winner = Collections.max(cars);
+        return cars.stream()
             .filter(c -> c.compareTo(winner)==0)
             .collect(Collectors.toList());
     }
