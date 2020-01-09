@@ -1,15 +1,29 @@
+import java.util.List;
+import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.toList;
+
 public class ResultView {
-    public static String RESULT_MSG = "실행 결과";
-
-    public static void viewResultMsg() {
-        System.out.println(RESULT_MSG);
+    void printTitle() {
+        System.out.println("실행 결과");
     }
 
-    public static void viewIntermediate(CarsLocation carsLocation) {
-        //print result
+    void printLocation(List<Car> cars) {
+        for (Car car : cars) {
+            System.out.print(car.getName());
+            System.out.print(" : ");
+            for (int i=0; i<car.getLocation(); i++) {
+                System.out.print("-");
+            }
+            System.out.println();
+        }
+        System.out.println();
     }
 
-    public static void viewFinal(CarsLocation carsLocation) {
-
+    void printWinner(List<Car> winner) {
+        List<String> winnerName = winner.stream()
+                .map(Car::getName)
+                .collect(Collectors.toList());
+        System.out.println(String.format("%s가 최종 우승했습니다.", String.join(", ", winnerName)));
     }
 }
