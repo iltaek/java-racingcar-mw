@@ -11,7 +11,7 @@ import racing.domain.movingstrategy.RandomMoveStrategy;
 
 public class RacingGame {
 
-    private List<Car> cars;
+    private List<Car> cars = new ArrayList<>();
     private int tries;
 
     public RacingGame(List<String> names, int tries) {
