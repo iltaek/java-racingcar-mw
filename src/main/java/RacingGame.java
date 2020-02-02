@@ -4,38 +4,38 @@ import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class RacingGame {
+class RacingGame {
 
     private final Random random = new Random(); //주사위
     private final List<Car> cars;
     private final int round;
 
-    public RacingGame(List<String> playerNames, int round) {
+    RacingGame(List<String> playerNames, int round) {
         cars = CarMaker.make(playerNames);
         this.round = round;
     }
 
-    public List<Car> getCars() {
+    List<Car> getCars() {
         return cars;
     }
 
-    public int getRound() {
+    int getRound() {
         return round;
     }
 
-    public void start() {
+    void start() {
         IntStream.range(0, round)
             .forEach(i -> startOneRound());
     }
 
-    public void startOneRound() {
+    private void startOneRound() {
         cars.forEach(c -> c.goOneStep(random.nextInt(10)));
     }
 
-    public List<Car> getWinner() {
+    List<Car> getWinner() {
         Car winner = Collections.max(cars);
         return cars.stream()
-            .filter(c -> c.compareTo(winner)==0)
+            .filter(c -> c.isWinner(winner))
             .collect(Collectors.toList());
     }
 }
