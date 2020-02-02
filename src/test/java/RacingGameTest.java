@@ -18,32 +18,6 @@ public class RacingGameTest {
     }
 
     @Test
-    public void 한_라운드_진행_테스트() {
-        //given
-        RacingGame racingGame = new RacingGame(Arrays.asList("CarA", "CarB", "CarC"), 5);
-        //when
-        racingGame.startOneRound();
-        List<Car> cars = racingGame.getCars();
-        //then
-        assertThat(cars.get(0).getValues().size()).isEqualTo(1);
-        assertThat(cars.get(1).getValues().size()).isEqualTo(1);
-        assertThat(cars.get(2).getValues().size()).isEqualTo(1);
-    }
-
-    @Test
-    public void 모든_라운드_진행_테스트() {
-        //given
-        RacingGame racingGame = new RacingGame(Arrays.asList("CarA", "CarB", "CarC"), 5);
-        //when
-        racingGame.start();
-        List<Car> cars = racingGame.getCars();
-        //then
-        assertThat(cars.get(0).getValues().size()).isEqualTo(5);
-        assertThat(cars.get(1).getValues().size()).isEqualTo(5);
-        assertThat(cars.get(2).getValues().size()).isEqualTo(5);
-    }
-
-    @Test
     public void 승자_검색_및_반환_테스트() {
         //given
         RacingGame racingGame = new RacingGame(Arrays.asList("CarA", "CarB", "CarC"), 5);

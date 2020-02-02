@@ -1,9 +1,9 @@
 import java.util.Iterator;
 import java.util.stream.IntStream;
 
-public class ResultPrinter {
+class ResultPrinter {
 
-    public static void print(RacingGame racingGame) {
+    static void print(RacingGame racingGame) {
         System.out.print("\n실행 결과");
 
         IntStream.range(0, racingGame.getRound())
